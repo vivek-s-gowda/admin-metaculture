@@ -1,0 +1,178 @@
+<div class="main-panel">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar bar1"></span>
+          <span class="icon-bar bar2"></span>
+          <span class="icon-bar bar3"></span>
+        </button>
+        <a class="navbar-brand" href="#">Posters</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="ti-bell"></i>
+              <p class="notification">5</p>
+              <p>Notifications</p>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Notification 1</a></li>
+              <li><a href="#">Notification 2</a></li>
+              <li><a href="#">Notification 3</a></li>
+              <li><a href="#">Notification 4</a></li>
+              <li><a href="#">Another notification</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="ti-settings"></i>
+              <p>Settings</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <button type="submit" (click)="edit =!edit" class="pull-right btn btn-info btn-fill btn-wd">
+            Add Poster
+          </button>
+       
+        </div>
+   
+      </div>
+      <br/>
+      <div *ngIf="!edit">
+        <div *ngFor="let course of courses" class="col-md-3 col-lg-3">
+          <div class="card card-user">
+            <div class="image">
+              <img src="assets/img/background.jpg" alt="..." />
+            </div>
+            <div class="content">
+              <div class="author">
+                <img
+                  class="avatar border-white"
+                  src="assets/img/faces/face-2.jpeg"
+                  alt="..."
+                />
+                <h4 class="title">
+                  Demo<br />
+                  <a href="#"><small>@Ashok</small></a>
+                </h4>
+              </div>
+              <p class="description text-center">
+                "I like the way you work it <br />
+                No diggity <br />
+                I wanna bag it up"
+              </p>
+            </div>
+            <hr />
+            <div class="text-center">
+              <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                  <h5><i class="ti-image"></i><br /><small>Poster</small></h5>
+                </div>
+                <div class="col-md-4">
+                  <h5>20 $<br /><small>Price</small></h5>
+                </div>
+                <div class="col-md-3" (click)="edit = !edit">
+                  <h5><i class="ti-pencil"></i><br /><small>Edit</small></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="edit" class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Add Poster</h4>
+          </div>
+          <div class="content">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Poster Name</label>
+                    <input
+                      type="text"
+                      class="form-control border-input"
+                      placeholder="Poster Name"
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Poster Image</label>
+                    <input
+                      type="file"
+                      class="form-control border-input"
+                      placeholder="Poster Name"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Poster Tag</label>
+                    <input
+                      type="text"
+                      class="form-control border-input"
+                      placeholder="Tag"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Poster Price</label>
+                    <input
+                      type="text"
+                      class="form-control border-input"
+                      placeholder="Poster Price"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Poster Description</label>
+                    <textarea
+                      rows="5"
+                      class="form-control border-input"
+                      placeholder="Here can be your description"
+                      value=""
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd">
+                  Add Poster
+                </button>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
