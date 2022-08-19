@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "metaculture",
+    "public": "dist/admin-metaculture",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
