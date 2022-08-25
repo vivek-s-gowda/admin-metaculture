@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 TimeAgo.addDefaultLocale(en)
 
 @Component({
@@ -64,6 +66,7 @@ export class DashboardComponent implements OnInit {
 
   posterCount: any;
   orderCount: any;
+  courseCount: any;
   todayOrderCount: any;
   todayRevenue: any;
   totalRevenue: any;
@@ -137,19 +140,20 @@ export class DashboardComponent implements OnInit {
   //   },
   // ];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     let todayRevenue = 0;
     let totalRevenue = 0;
     this.dataService.getData().subscribe((val) => {
-      this.posterCount = val[1].length;
-    });
+      console.log(val)
+      this.posterCount = val[2].length;
 
-    this.dataService.getData().subscribe((val) => {
-      this.orderCount = val[0].length;
+      this.courseCount = val[0].length
 
-      this.todayOrderCount = val[0].map((order: any) => {
+      this.orderCount = val[1].length;
+
+      this.todayOrderCount = val[1].map((order: any) => {
         return this.isToday(new Date(order.date));
       }).length;
 
@@ -159,7 +163,7 @@ export class DashboardComponent implements OnInit {
         }
       });
 
-      val[0].map((order: any) => {
+      val[1].map((order: any) => {
         totalRevenue = totalRevenue + parseInt(order.paid);
       });
 
@@ -168,6 +172,7 @@ export class DashboardComponent implements OnInit {
 
       console.log(this.todayRevenue);
     });
+
 
     // this.dataService.addPoster('orders',this.orders)
   }
@@ -189,5 +194,10 @@ export class DashboardComponent implements OnInit {
     if (today.toDateString() === someDate.toDateString()) {
       return true;
     } else return false;
+  }
+
+  logout() {
+    this.authService.setLoginStatus("false");
+    this.router.navigate(['login']);
   }
 }

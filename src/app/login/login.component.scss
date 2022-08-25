@@ -1,0 +1,26 @@
+.login-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    img{
+        height: 100px;
+        width: 250px;
+    }
+    input {
+        margin-top: 50px;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+    }
+    button {
+        margin-top: 30px;
+        width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: gray 1px solid;
+        color: aliceblue;
+        background-color: rgb(108, 173, 129);
+    }
+}

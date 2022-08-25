@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class="sidebar" data-background-color="white" data-active-color="danger">
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" *ngIf="getLoginStatus === 'true' " >
       <div class="logo">
         <a href="" class="simple-text"> METACULTURE </a>
       </div>
 
       <ul class="nav">
-        <li [ngClass]="currentRoute?.url === '/' ? 'active' : ''">
-          <a [routerLink]="['']">
+        <li [ngClass]="currentRoute?.url === '/dashboard' ? 'active' : ''">
+          <a [routerLink]="['dashboard']">
             <i class="ti-panel"></i>
             <p>Dashboard</p>
           </a>
@@ -25,9 +25,9 @@
           </a>
         </li>
         <li [ngClass]="currentRoute?.url === '/notification' ? 'active' : ''">
-          <a [routerLink]="['notification']">
+          <a [routerLink]="['orders']">
             <i class="ti-bell"></i>
-            <p>Notifications</p>
+            <p>Orders</p>
           </a>
         </li>
       </ul>
