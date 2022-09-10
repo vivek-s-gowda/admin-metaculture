@@ -48,18 +48,23 @@
 
           </div>
           <div class="content">
-            <div class="order-item" *ngFor="let order of ordersList; index as i">
+            <div class="order-item" *ngFor="let order of notDeliveredList; index as i">
               <div class="name">Order ID: {{i+1}} </div>
               <div class="name">Name :  {{order?.name}}</div>
               <div class="name"> Email : {{order?.email}}</div>
+              <div class="name"> Date : {{order?.date | date}}</div>
               <div class="name">Amount Paid :  {{order?.amount / 100 | currency}}</div>
               <div class="name"> {{order?.address}}, {{order?.city}}, PIN : {{order?.zipcode}} </div>
               <div class="name">Orders: </div>
               <div class="order-item" *ngFor="let item of order?.items; index as i">
+
                 <div class="name">Item : {{item?.heading}} </div>
+                <div class="name">Date : {{item?.date | date}} </div>
+                <div class="name">Type : {{item?.type}} </div>
                 <div class="name">Cost : {{item?.cost | currency}} </div>
 
               </div>
+              <button class="btn" (click)="markDeliverd(i)">Mark Delivered</button>
             </div>
           </div>
         </div>
@@ -70,10 +75,27 @@
             <h4>Delivered Orders</h4>
           </div>
           <div class="content">
+            <div class="order-item" *ngFor="let order of deliveredList; index as i">
+              <div class="name">Order ID: {{i+1}} </div>
+              <div class="name">Name :  {{order?.name}}</div>
+              <div class="name"> Email : {{order?.email}}</div>
+              <div class="name"> Date : {{order?.date | date}}</div>
+              <div class="name">Amount Paid :  {{order?.amount / 100 | currency}}</div>
+              <div class="name"> {{order?.address}}, {{order?.city}}, PIN : {{order?.zipcode}} </div>
+              <div class="name">Orders: </div>
+              <div class="order-item" *ngFor="let item of order?.items; index as i">
 
+                <div class="name">Item : {{item?.heading}} </div>
+                <div class="name">Date : {{item?.date | date}} </div>
+                <div class="name">Type : {{item?.type}} </div>
+                <div class="name">Cost : {{item?.cost | currency}} </div>
+
+              </div>
+              <button class="btn" (click)="markNotDeliverd(i)">Mark Not Delivered</button>
+            </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

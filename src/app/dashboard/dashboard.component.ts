@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-TimeAgo.addDefaultLocale(en)
+import { visitAll } from '@angular/compiler';
+TimeAgo.addDefaultLocale(en);
 
 @Component({
   selector: 'app-dashboard',
@@ -14,19 +15,19 @@ TimeAgo.addDefaultLocale(en)
 export class DashboardComponent implements OnInit {
   multi: any[] = [
     {
-      name: 'Posters',
-      series: [
+      "name": 'Posters',
+      "series": [
         {
-          name: '19/08/22',
-          value: 62000000,
+          "name": '19/08/22',
+          "value": 62000000,
         },
         {
-          name: '20/08/22',
-          value: 73000000,
+          "name": '20/08/22',
+          "value": 73000000,
         },
         {
-          name: '21/08/22',
-          value: 89400000,
+          "name": '21/08/22',
+          "value": 89400000,
         },
       ],
     },
@@ -70,7 +71,7 @@ export class DashboardComponent implements OnInit {
   todayOrderCount: any;
   todayRevenue: any;
   totalRevenue: any;
-  timeAgo = new TimeAgo('en-US')
+  timeAgo = new TimeAgo('en-US');
   contactingYou: any = [];
 
   // orders = [
@@ -141,20 +142,54 @@ export class DashboardComponent implements OnInit {
   //   },
   // ];
 
-  constructor(private dataService: DataService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     let todayRevenue = 0;
     let totalRevenue = 0;
     this.dataService.getData().subscribe((val) => {
-
       this.contactingYou = val[0].reverse();
 
       this.posterCount = val[3].length;
 
-      this.courseCount = val[1].length
+      this.courseCount = val[1].length;
 
       this.orderCount = val[2].length;
+
+      let xlist: any = [];
+      let orderdPosters = val[2].map((val: any) => {
+        return val.items;
+      });
+
+      orderdPosters.map((val: any) => {
+        val?.forEach((element: any) => {
+          xlist.push(element);
+        });
+      });
+
+      console.log(xlist);
+
+      // xlist.forEach((val: any) => {
+      //   this.multi[0].series.push({
+      //     name: new Date(val?.date),
+      //     value: parseInt(val?.cost),
+      //   });
+      // });
+
+      // xlist.forEach((val: any) => {
+      //   this.multi[1].series.push({
+      //     name: new Date(val?.date),
+      //     value: parseInt(val?.cost),
+      //   });
+      // });
+
+
+
+      console.log(this.multi);
 
       this.todayOrderCount = val[2].map((order: any) => {
         return this.isToday(new Date(order.date));
@@ -167,7 +202,7 @@ export class DashboardComponent implements OnInit {
       });
 
       val[2].map((order: any) => {
-        totalRevenue = totalRevenue + (parseInt(order.amount) / 100) ;
+        totalRevenue = totalRevenue + parseInt(order.amount) / 100;
       });
 
       this.todayRevenue = todayRevenue;
@@ -175,7 +210,6 @@ export class DashboardComponent implements OnInit {
 
       console.log(this.todayRevenue);
     });
-
 
     // this.dataService.addPoster('orders',this.orders)
   }
@@ -200,7 +234,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.authService.setLoginStatus("false");
+    this.authService.setLoginStatus('false');
     this.router.navigate(['login']);
   }
 }
