@@ -34,7 +34,7 @@ export class DataService {
 
   getPostersCount() {
     this.user.valueChanges().subscribe(val=>{
-      return val[0].length;
+      return val[3].length;
     });
   }
 

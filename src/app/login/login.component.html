@@ -1,5 +1,8 @@
 <div class="login-layout">
   <img src="assets/img/head-baner.png" alt="logo" />
-  <input type="password" [(ngModel)]="password" placeholder="Password" />
-  <button (click)="login()">Login</button>
+  <form (submit)="login()" class="form">
+
+    <input type="password" [(ngModel)]="password" placeholder="Password" [ngModelOptions]="{standalone: true}" />
+    <button type="submit" (click)="login()">Login</button>
+  </form>
 </div>

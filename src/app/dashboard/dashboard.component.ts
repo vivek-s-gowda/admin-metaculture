@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit {
   todayRevenue: any;
   totalRevenue: any;
   timeAgo = new TimeAgo('en-US')
+  contactingYou: any = [];
 
   // orders = [
   //   {
@@ -146,25 +147,27 @@ export class DashboardComponent implements OnInit {
     let todayRevenue = 0;
     let totalRevenue = 0;
     this.dataService.getData().subscribe((val) => {
-      console.log(val)
-      this.posterCount = val[2].length;
 
-      this.courseCount = val[0].length
+      this.contactingYou = val[0].reverse();
 
-      this.orderCount = val[1].length;
+      this.posterCount = val[3].length;
 
-      this.todayOrderCount = val[1].map((order: any) => {
+      this.courseCount = val[1].length
+
+      this.orderCount = val[2].length;
+
+      this.todayOrderCount = val[2].map((order: any) => {
         return this.isToday(new Date(order.date));
       }).length;
 
-      val[0].map((order: any) => {
+      val[2].map((order: any) => {
         if (this.isToday(new Date(order.date))) {
-          todayRevenue = todayRevenue + parseInt(order.paid);
+          todayRevenue = todayRevenue + parseInt(order.amount);
         }
       });
 
-      val[1].map((order: any) => {
-        totalRevenue = totalRevenue + parseInt(order.paid);
+      val[2].map((order: any) => {
+        totalRevenue = totalRevenue + (parseInt(order.amount) / 100) ;
       });
 
       this.todayRevenue = todayRevenue;

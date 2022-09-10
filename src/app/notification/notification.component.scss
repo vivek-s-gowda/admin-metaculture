@@ -1,0 +1,12 @@
+.order-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px grey solid;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    .name {
+        font-size: medium;
+
+    }
+}

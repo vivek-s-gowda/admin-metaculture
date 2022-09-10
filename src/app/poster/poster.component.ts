@@ -123,7 +123,7 @@ export class PosterComponent implements OnInit {
   edit: boolean = false;
   ngOnInit(): void {
     this.dataService.getData().subscribe((val) => {
-      this.posters = val[2];
+      this.posters = val[3];
     });
     // this.dataService.addPoster('posters', this.posters)
     // this.dataService.getPosters()

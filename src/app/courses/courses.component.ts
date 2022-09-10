@@ -34,7 +34,7 @@ export class CoursesComponent implements OnInit {
   edit: boolean = false;
   ngOnInit(): void {
     this.dataService.getData().subscribe((val) => {
-      this.courses = val[0];
+      this.courses = val[1];
     });
 
     // this.dataService.addPoster('courses', this.courses);
