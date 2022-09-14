@@ -196,13 +196,15 @@ export class DashboardComponent implements OnInit {
       }).length;
 
       val[2].map((order: any) => {
-        if (this.isToday(new Date(order.date))) {
-          todayRevenue = todayRevenue + parseInt(order.amount);
+        if (this.isToday(new Date(order?.date))) {
+          if(order?.amount)
+            todayRevenue = todayRevenue + parseInt(order?.amount);
         }
       });
 
       val[2].map((order: any) => {
-        totalRevenue = totalRevenue + parseInt(order.amount) / 100;
+        if(order?.amount)
+          totalRevenue = totalRevenue + parseInt(order?.amount) / 100;
       });
 
       this.todayRevenue = todayRevenue;
